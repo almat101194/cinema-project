@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="actor_name_color">#D8D8D8</color>
+    <color name="tag_and_star_color">#FF3365</color>
+    <color name="reviews_and_storyline_color">#6D6D80</color>
+    <color name="back_button_color">#333343</color>
+    <color name="layout_background_color">#191926</color>
 </resources>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    //hw2
+    <dimen name="space_6x">24sp</dimen>
+    <dimen name="space_10x">40sp</dimen>
+    <dimen name="space_3x">12sp</dimen>
+    <dimen name="space_3.5x">14sp</dimen>
+    <dimen name="space_4x">16sp</dimen>
+    <dimen name="space_1x">4sp</dimen>
+    <dimen name="space_2x">8sp</dimen>
+
+    <dimen name="space_margin">16dp</dimen>
+
+    <dimen name="space_movie_name_width">343px</dimen>
+    <dimen name="space_movie_name_height">80px</dimen>
+    <dimen name="space_movie_name_top">32px</dimen>
+
+    <dimen name="space_movie_tag_width">343px</dimen>
+    <dimen name="space_movie_height_height">20px</dimen>
+
+    <dimen name="space_movie_storyline_width">343px</dimen>
+    <dimen name="space_movie_storyline_height">20px</dimen>
+
+    <dimen name="space_movie_description_width">343px</dimen>
+    <dimen name="space_movie_description_height">100px</dimen>
+    <dimen name="space_movie_description_top">24px</dimen>
+
+    <dimen name="space_movie_cast_width">343px</dimen>
+    <dimen name="space_movie_cast_height">20px</dimen>
+
+    <dimen name="space_helpers">10px</dimen>
+
+</resources>
