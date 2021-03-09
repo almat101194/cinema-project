@@ -4,6 +4,7 @@
     //hw2
     <string name="movie_details_activity">Переход на Movie Details Activity</string>
     <string name="movie_name">Avengers: <br> </br>End Game</string>
+    <string name="movie_name_for_list">Avengers: End Game</string>
     <string name="movie_pg">13+</string>
     <string name="movie_storyline">Storyline</string>
     <string name="movie_brief_description">After the devastating events of Avengers: Infinity War,
@@ -18,4 +19,8 @@
     <string name="movie_actor4">Chris <br> </br> Hemsworth</string>
     <string name="movie_reviews">125 REVIEWS</string>
     <string name="movie_back">Back</string>
+    <string name="movies_list">Movies list</string>
+    <string name="movie_running_time">137 min</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
