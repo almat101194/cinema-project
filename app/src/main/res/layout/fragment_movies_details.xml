@@ -23,13 +23,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!--    <androidx.constraintlayout.widget.Guideline-->
-        <!--        android:id="@+id/helper_g"-->
-        <!--        android:layout_width="@dimen/space_helpers"-->
-        <!--        android:layout_height="@dimen/space_helpers"-->
-        <!--        android:orientation="vertical"-->
-        <!--        app:layout_constraintGuide_begin="0dp" />-->
-
         <TextView
             android:id="@id/iv_back_button"
             android:layout_width="wrap_content"
@@ -74,7 +67,6 @@
             android:id="@+id/tv_movie_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:text="@string/movie_tag"
             android:textColor="@color/tag_and_star_color"
             android:textSize="@dimen/space_3.5x"
@@ -155,65 +147,20 @@
             app:layout_constraintStart_toStartOf="@+id/tv_movie_description"
             app:layout_constraintTop_toBottomOf="@+id/tv_movie_description" />
 
-        <TextView
-            android:id="@+id/tv_actor_first"
-            android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/id_rv_actors"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:drawableTop="@drawable/robert_downey_jr"
-            android:gravity="left"
-            android:text="@string/movie_actor1"
-            android:textColor="@color/white"
-            android:textSize="@dimen/space_3x"
-            app:layout_constraintEnd_toEndOf="@+id/textView8"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/textView8"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+            android:orientation="horizontal"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8"
+            tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/view_holder_actor" />
 
-        <TextView
-            android:id="@+id/tv_actor_three"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="92dp"
-            android:drawableTop="@drawable/mark_ruffalo"
-            android:gravity="left"
-            android:text="@string/movie_actor3"
-            android:textColor="@color/white"
-            android:textSize="@dimen/space_3x"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_actor_two"
-            app:layout_constraintStart_toStartOf="@+id/tv_actor_two"
-            app:layout_constraintTop_toTopOf="@+id/tv_actor_two"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/tv_actor_four"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="92dp"
-            android:drawableTop="@drawable/chris_hemsworth"
-            android:gravity="left"
-            android:text="@string/movie_actor4"
-            android:textColor="@color/white"
-            android:textSize="@dimen/space_3x"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_actor_three"
-            app:layout_constraintStart_toStartOf="@+id/tv_actor_three"
-            app:layout_constraintTop_toTopOf="@+id/tv_actor_three"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/tv_actor_two"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="92dp"
-            android:drawableTop="@drawable/chris_evans"
-            android:gravity="left"
-            android:text="@string/movie_actor2"
-            android:textColor="@color/white"
-            android:textSize="@dimen/space_3x"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_actor_first"
-            app:layout_constraintStart_toStartOf="@+id/tv_actor_first"
-            app:layout_constraintTop_toTopOf="@+id/tv_actor_first"
-            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
