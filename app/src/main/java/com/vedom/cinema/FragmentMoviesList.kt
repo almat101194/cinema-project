@@ -31,10 +31,7 @@ class FragmentMoviesList : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        moviesListRv = view.findViewById(R.id.id_rv_movies_list)
-        moviesListRv?.adapter = MoviesListAdapter(clickListener)
-        moviesListRv?.layoutManager = GridLayoutManager(requireContext(), 2)
+        setUpUI(view)
     }
 
     private fun moveToFragmentMoviesDetails(movie: Movie) {
@@ -60,7 +57,11 @@ class FragmentMoviesList : Fragment() {
         }
     }
 
-    private fun setUpUI() {}
+    private fun setUpUI(view: View) {
+        moviesListRv = view.findViewById(R.id.id_rv_movies_list)
+        moviesListRv?.adapter = MoviesListAdapter(clickListener)
+        moviesListRv?.layoutManager = GridLayoutManager(requireContext(), 2)
+    }
 
     companion object{
         const val MOVIE1 = "MOVIE1"
@@ -79,6 +80,13 @@ class FragmentMoviesList : Fragment() {
         const val MOVIE14 = "MOVIE14"
         const val MOVIE15 = "MOVIE15"
         const val MOVIE16 = "MOVIE16"
+
+//        const val FRAGMENT_MOVIES_DETAILS = "Fragment Movies Details"
+
+        fun newInstance(): FragmentMoviesList {
+            val fragment = FragmentMoviesList()
+            return fragment
+        }
 
     }
 }

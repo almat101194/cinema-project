@@ -36,12 +36,6 @@ class FragmentMoviesDetails : Fragment() {
     private var rbMovieDetails: RatingBar? = null
     private var tvReviews: TextView? = null
     private var tvStoryLine: TextView? = null
-//    private var actorsList: ArrayList<Actor>? = null
-//    var actor1: Actor = Actor(1, arguments?.getString(MOVIE9), arguments?.getInt(MOVIE12))
-//    var actor2: Actor = Actor(1, arguments?.getString(MOVIE10), arguments?.getInt(MOVIE13))
-//    var actor3: Actor = Actor(1, arguments?.getString(MOVIE11), arguments?.getInt(MOVIE14))
-//    var actor4: Actor = Actor(1, arguments?.getString(MOVIE16), arguments?.getInt(MOVIE15))
-//    var actorsList: List<Actor> = listOf(actor1, actor2, actor3, actor4)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,6 +49,10 @@ class FragmentMoviesDetails : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setUpUI(view)
+    }
+
+    private fun setUpUI(view: View) {
         actorsListRv = view.findViewById(R.id.id_rv_actors)
         actorsListRv?.adapter = ActorsListAdapter()
         actorsListRv?.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
@@ -77,19 +75,11 @@ class FragmentMoviesDetails : Fragment() {
 
         tvStoryLine = view.findViewById(R.id.tv_movie_description)
         tvStoryLine?.text = arguments?.getString(MOVIE1)
-
-        var actor1: Actor = Actor(1, arguments?.getString(MOVIE9), arguments?.getInt(MOVIE12))
-        var actor2: Actor = Actor(1, arguments?.getString(MOVIE10), arguments?.getInt(MOVIE13))
-        var actor3: Actor = Actor(1, arguments?.getString(MOVIE11), arguments?.getInt(MOVIE14))
-        var actor4: Actor = Actor(1, arguments?.getString(MOVIE16), arguments?.getInt(MOVIE15))
-        var actorsList: List<Actor> = listOf(actor1, actor2, actor3, actor4)
-        updateData(actorsList)
-
     }
 
     override fun onStart() {
         super.onStart()
-//        updateData()
+        updateData()
     }
 
     override fun onDetach() {
@@ -97,7 +87,12 @@ class FragmentMoviesDetails : Fragment() {
         super.onDetach()
     }
 
-    private fun updateData(actorsList: List<Actor>) {
+    private fun updateData() {
+        var actor1: Actor = Actor(1, arguments?.getString(MOVIE9), arguments?.getInt(MOVIE12))
+        var actor2: Actor = Actor(1, arguments?.getString(MOVIE10), arguments?.getInt(MOVIE13))
+        var actor3: Actor = Actor(1, arguments?.getString(MOVIE11), arguments?.getInt(MOVIE14))
+        var actor4: Actor = Actor(1, arguments?.getString(MOVIE16), arguments?.getInt(MOVIE15))
+        var actorsList: List<Actor> = listOf(actor1, actor2, actor3, actor4)
         (actorsListRv?.adapter as? ActorsListAdapter)?.apply {
             bindActors(actorsList)
         }

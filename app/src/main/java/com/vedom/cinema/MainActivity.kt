@@ -1,32 +1,35 @@
 package com.vedom.cinema
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
+
+    private var fragmentMoviesList: FragmentMoviesList? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        val textView: TextView = findViewById(R.id.first_activity_text)
-//        textView.setOnClickListener { moveToMovieDetailsActivity() }
+        moveToFragmentMoviesList(savedInstanceState)
+    }
+
+    private fun moveToFragmentMoviesList(savedInstanceState: Bundle?) {
+        fragmentMoviesList = FragmentMoviesList.newInstance()
         if (savedInstanceState == null) {
-            moveToFragmentMoviesList()
+            fragmentMoviesList?.apply {
+                supportFragmentManager.beginTransaction()
+                        .addToBackStack(null)
+                        .add(R.id.main_container, this, FRAGMENT_MOVIE_LIST_TAG)
+                        .commit()
+            }
+        }else {
+            fragmentMoviesList =
+                    supportFragmentManager.findFragmentByTag(FRAGMENT_MOVIE_LIST_TAG) as? FragmentMoviesList
         }
-
     }
 
-    private fun moveToMovieDetailsActivity() {
-        val intent = Intent(this, MovieDetailsActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun moveToFragmentMoviesList() {
-        supportFragmentManager.beginTransaction()
-            .addToBackStack(null)
-            .add(R.id.main_container, FragmentMoviesList())
-            .commit()
+    companion object {
+        const val FRAGMENT_MOVIE_LIST_TAG = "Fragment Movie Lists"
     }
 }
