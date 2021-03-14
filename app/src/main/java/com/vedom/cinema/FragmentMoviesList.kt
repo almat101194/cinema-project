@@ -10,15 +10,22 @@ import android.widget.ImageView
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.vedom.cinema.data.loadMovies
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class FragmentMoviesList : Fragment() {
 
     private var moviesListRv: RecyclerView? = null
     private val clickListener = object : ClickedListener {
-        override fun onClick(movie: Movie) {
-            moveToFragmentMoviesDetails(movie)
+        override fun onClick(movie: com.vedom.cinema.data.Movie) {
+//            moveToFragmentMoviesDetails(movie)
         }
     }
+    private val scope = CoroutineScope(Dispatchers.Main)
+    private var job: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +38,9 @@ class FragmentMoviesList : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+
         setUpUI(view)
     }
 
@@ -43,7 +53,14 @@ class FragmentMoviesList : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        updateData()
+        job = scope.launch {
+
+            (moviesListRv?.adapter as? MoviesListAdapter)?.apply {
+                bindMovies(loadMovies(requireContext()))
+            }
+
+        }
+//        updateData()
     }
 
     override fun onDetach() {
@@ -51,16 +68,22 @@ class FragmentMoviesList : Fragment() {
         super.onDetach()
     }
 
-    private fun updateData() {
-        (moviesListRv?.adapter as? MoviesListAdapter)?.apply {
-            bindMovies(MovieDataSource().getMovies())
-        }
-    }
+//    private fun updateData() {
+//        (moviesListRv?.adapter as? MoviesListAdapter)?.apply {
+//            bindMovies(MovieDataSource().getMovies())
+//        }
+//    }
 
     private fun setUpUI(view: View) {
         moviesListRv = view.findViewById(R.id.id_rv_movies_list)
         moviesListRv?.adapter = MoviesListAdapter(clickListener)
         moviesListRv?.layoutManager = GridLayoutManager(requireContext(), 2)
+        moviesListRv?.setHasFixedSize(false)
+    }
+
+    override fun onDestroyView() {
+        job?.cancel()
+        super.onDestroyView()
     }
 
     companion object{

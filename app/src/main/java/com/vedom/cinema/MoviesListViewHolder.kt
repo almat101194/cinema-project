@@ -1,13 +1,14 @@
 package com.vedom.cinema
 
-import android.media.Image
-import android.text.method.TextKeyListener.clear
+import android.app.Activity
 import android.view.View
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.vedom.cinema.data.Movie
 
 class MoviesListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
@@ -21,21 +22,28 @@ class MoviesListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     private val ivPoster: ImageView = itemView.findViewById(R.id.iv_image_view_holder_movies_list)
 
     fun bind(movie: Movie) {
-        pg.text = "${movie.pg}+"
-        genres.text = /*"${movie.tags[0]}, ${movie.tags[1]}, ${movie.tags[2]}"*/ movie.tags.joinToString(separator = ",")
-        reviews.text = "${movie.reViews} reviews"
-        runningTIme.text = "${movie.length} MINUTE"
+        pg.text = "${movie.minimumAge}+"
+        genres.text = movie.genres.joinToString(separator = ","){it.name}
+        reviews.text = "${movie.numberOfRatings} reviews"
+        runningTIme.text = "${movie.runtime} MINUTE"
         name.text = movie.title
-        setLiked(movie.isLiked)
-        rb.rating = movie.rating
+//        setLiked(movie)
+        rb.rating = movie.ratings/2
         setPoster(movie)
 
     }
 
     private fun setPoster(movie: Movie) {
-        ivPoster.apply {
-            movie.posterImage?.let { setImageResource(it) }
-        }
+
+
+        Glide.with(context)
+            .load(movie.poster)
+            .into(ivPoster)
+
+//        ivPoster.apply {
+//
+////            movie.posterImage?.let { setImageResource(it) }
+//        }
     }
 
     private fun setLiked(isLiked: Boolean) {
@@ -56,3 +64,5 @@ class MoviesListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     }
 
 }
+private val RecyclerView.ViewHolder.context
+    get() = this.itemView.context
