@@ -8,14 +8,14 @@ import kotlinx.android.parcel.RawValue
 @Parcelize
 data class Movie(
     val id: Int,
-    val title: String,
-    val overview: String,
-    val poster: String,
+    val title: String, //+
+    val overview: String, //+
+    val poster: String, //+
     val backdrop: String,
-    val ratings: Float,
-    val numberOfRatings: Int,
-    val minimumAge: Int,
-    val runtime: Int,
-    val genres: @RawValue List<Genre>,
+    val ratings: Float, //+
+    val numberOfRatings: Int, //+
+    val minimumAge: Int, //+
+    val runtime: Int, //+
+    val genres: @RawValue List<Genre>, //+
     val actors: @RawValue List<Actor>
 ) : Parcelable

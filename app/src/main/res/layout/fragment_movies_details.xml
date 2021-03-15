@@ -15,7 +15,7 @@
         <ImageView
             android:id="@+id/iv_name_movie0"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="300dp"
             android:foreground="@drawable/gradient_img"
             android:scaleType="centerCrop"
             android:src="@drawable/orig"
@@ -78,12 +78,12 @@
         <RatingBar
             android:id="@+id/rb_of_movie"
             style="?android:attr/ratingBarStyleSmall"
-            android:layout_width="87dp"
-            android:layout_height="24dp"
+            android:layout_width="82dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="4dp"
             android:numStars="5"
             android:progressBackgroundTint="@color/white"
             android:progressTint="@color/tag_and_star_color"
-            android:rating="4"
             app:layout_constraintStart_toStartOf="@+id/tv_movie_tag"
             app:layout_constraintTop_toBottomOf="@+id/tv_movie_tag" />
 
@@ -91,10 +91,13 @@
             android:id="@+id/tv_review"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+
+            android:layout_marginTop="4dp"
+
             android:text="@string/movie_reviews"
             android:textColor="@color/reviews_and_storyline_color"
             android:textSize="@dimen/space_3.5x"
-            app:layout_constraintEnd_toEndOf="@+id/tv_movie_tag"
             app:layout_constraintStart_toEndOf="@+id/rb_of_movie"
             app:layout_constraintTop_toBottomOf="@+id/tv_movie_tag" />
 

@@ -4,6 +4,10 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.vedom.cinema.data.Actor
+import com.vedom.cinema.data.Movie
+import com.vedom.cinema.utils.imageOption
 
 class ActorsListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
@@ -12,6 +16,18 @@ class ActorsListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
     fun bind(actor: Actor) {
         name.text = actor.name
-        actor.image?.let { photoActor.setImageResource(it) }
+        setActorPhoto(actor)
+    }
+
+    private fun setActorPhoto(actor: Actor) {
+        Glide.with(context)
+                .clear(photoActor)
+        Glide.with(context)
+                .load(actor.picture)
+                .apply(imageOption)
+                .into(photoActor)
+
     }
 }
+private val RecyclerView.ViewHolder.context
+    get() = this.itemView.context

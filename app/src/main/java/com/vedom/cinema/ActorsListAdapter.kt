@@ -3,10 +3,11 @@ package com.vedom.cinema
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.vedom.cinema.data.Actor
 
 class ActorsListAdapter: RecyclerView.Adapter<ActorsListViewHolder>() {
 
-    private var actors = listOf<Actor>()
+    private var actors = listOf<com.vedom.cinema.data.Actor>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActorsListViewHolder {
         return ActorsListViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.view_holder_actor, parent, false))
@@ -20,7 +21,7 @@ class ActorsListAdapter: RecyclerView.Adapter<ActorsListViewHolder>() {
 
     fun getItem(position: Int): Actor = actors[position]
 
-    fun bindActors(newActors: List<Actor>) {
+    fun bindActors(newActors: List<com.vedom.cinema.data.Actor>) {
         actors = newActors
         notifyDataSetChanged()
     }

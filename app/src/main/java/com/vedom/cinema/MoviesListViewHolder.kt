@@ -34,8 +34,8 @@ class MoviesListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     }
 
     private fun setPoster(movie: Movie) {
-
-
+        Glide.with(context)
+                .clear(ivPoster)
         Glide.with(context)
             .load(movie.poster)
             .into(ivPoster)
