@@ -1,7 +1,8 @@
-package com.vedom.cinema
+package com.vedom.cinema.another
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.vedom.cinema.R
 
 class MovieDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

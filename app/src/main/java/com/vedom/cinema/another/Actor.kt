@@ -1,4 +1,4 @@
-package com.vedom.cinema
+package com.vedom.cinema.another
 
 import androidx.annotation.DrawableRes
 

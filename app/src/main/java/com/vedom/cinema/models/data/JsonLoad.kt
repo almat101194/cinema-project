@@ -1,4 +1,4 @@
-package com.vedom.cinema.data
+package com.vedom.cinema.models.data
 
 import android.content.Context
 import kotlinx.coroutines.Dispatchers

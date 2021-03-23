@@ -12,6 +12,16 @@
         android:layout_height="match_parent"
         android:background="@color/layout_background_color">
 
+        <ProgressBar
+            android:id="@+id/pb_movies_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintBottom_toBottomOf="@+id/iv_name_movie0"
+            app:layout_constraintEnd_toEndOf="@+id/iv_name_movie0"
+            app:layout_constraintStart_toStartOf="@+id/iv_name_movie0"
+            app:layout_constraintTop_toTopOf="@+id/iv_name_movie0" />
+
         <ImageView
             android:id="@+id/iv_name_movie0"
             android:layout_width="match_parent"

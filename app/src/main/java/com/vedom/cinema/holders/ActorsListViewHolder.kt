@@ -1,12 +1,12 @@
-package com.vedom.cinema
+package com.vedom.cinema.holders
 
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.vedom.cinema.data.Actor
-import com.vedom.cinema.data.Movie
+import com.vedom.cinema.R
+import com.vedom.cinema.models.data.Actor
 import com.vedom.cinema.utils.imageOption
 
 class ActorsListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){

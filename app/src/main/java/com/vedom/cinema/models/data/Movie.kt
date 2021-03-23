@@ -1,4 +1,4 @@
-package com.vedom.cinema.data
+package com.vedom.cinema.models.data
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

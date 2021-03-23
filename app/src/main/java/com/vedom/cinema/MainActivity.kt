@@ -2,6 +2,7 @@ package com.vedom.cinema
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.vedom.cinema.fragments.FragmentMoviesList
 
 class MainActivity : AppCompatActivity() {
 

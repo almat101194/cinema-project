@@ -1,17 +1,22 @@
-package com.vedom.cinema
+package com.vedom.cinema.fragments
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.core.app.ActivityCompat
+import android.widget.ProgressBar
+import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.vedom.cinema.data.Movie
-import com.vedom.cinema.data.loadMovies
+import com.vedom.cinema.interfaces.ClickedListener
+import com.vedom.cinema.adapters.MoviesListAdapter
+import com.vedom.cinema.R
+import com.vedom.cinema.factory.ViewModelFactory
+import com.vedom.cinema.models.data.Movie
+import com.vedom.cinema.models.data.loadMovies
+import com.vedom.cinema.viewmodeles.MoviesListViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -20,11 +25,15 @@ import kotlinx.coroutines.launch
 class FragmentMoviesList : Fragment() {
 
     private var moviesListRv: RecyclerView? = null
+    private var progressBar: ProgressBar? = null
+    private val viewModel: MoviesListViewModel by viewModels {ViewModelFactory(context = requireContext())}
+
     private val clickListener = object : ClickedListener {
         override fun onClick(movie: Movie) {
             moveToFragmentMoviesDetails(movie)
         }
     }
+    private var adapter = MoviesListAdapter(clickListener)
     private val scope = CoroutineScope(Dispatchers.Main)
     private var job: Job? = null
 
@@ -39,7 +48,15 @@ class FragmentMoviesList : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setUpUI(view)
+        viewModel.movieList.observe(viewLifecycleOwner, this::updateData)
+        viewModel.state.observe(viewLifecycleOwner, this::setStateLoading)
+        viewModel.loadMovies()
+    }
+
+    private fun setStateLoading(state: Boolean) {
+        progressBar?.isVisible = state
     }
 
     private fun moveToFragmentMoviesDetails(movie: Movie) {
@@ -51,30 +68,34 @@ class FragmentMoviesList : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        updateData()
+//        updateData()
     }
 
     override fun onDetach() {
         moviesListRv = null
+        progressBar = null
         super.onDetach()
     }
 
-    private fun updateData() {
-        job = scope.launch {
-
-            (moviesListRv?.adapter as? MoviesListAdapter)?.apply {
-                bindMovies(loadMovies(requireContext()))
-            }
-
-        }
+    private fun updateData(data: List<Movie>) {
+        adapter.bindMovies(newMovies = data)
+        adapter.notifyDataSetChanged()
+//        job = scope.launch {
+//
+//            (moviesListRv?.adapter as? MoviesListAdapter)?.apply {
+//                bindMovies(loadMovies(requireContext()))
+//            }
+//
+//        }
 //        (moviesListRv?.adapter as? MoviesListAdapter)?.apply {
 //            bindMovies(MovieDataSource().getMovies())
 //        }
     }
 
     private fun setUpUI(view: View) {
+        progressBar = view.findViewById(R.id.pb_movies_list)
         moviesListRv = view.findViewById(R.id.id_rv_movies_list)
-        moviesListRv?.adapter = MoviesListAdapter(clickListener)
+        moviesListRv?.adapter = adapter
         moviesListRv?.layoutManager = GridLayoutManager(requireContext(), 2)
         moviesListRv?.setHasFixedSize(true)
     }

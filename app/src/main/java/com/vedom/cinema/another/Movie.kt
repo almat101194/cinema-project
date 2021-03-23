@@ -1,6 +1,7 @@
-package com.vedom.cinema
+package com.vedom.cinema.another
 
 import androidx.annotation.DrawableRes
+import com.vedom.cinema.another.Actor
 
 data class Movie(
     val id: Long,

@@ -1,9 +1,12 @@
-package com.vedom.cinema
+package com.vedom.cinema.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.vedom.cinema.data.Movie
+import com.vedom.cinema.interfaces.ClickedListener
+import com.vedom.cinema.R
+import com.vedom.cinema.holders.MoviesListViewHolder
+import com.vedom.cinema.models.data.Movie
 
 class MoviesListAdapter(
     private val clickedListener: ClickedListener

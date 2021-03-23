@@ -1,4 +1,6 @@
-package com.vedom.cinema
+package com.vedom.cinema.another
+
+import com.vedom.cinema.R
 
 class ActorDataSource {
     fun getActors():List<Actor> {

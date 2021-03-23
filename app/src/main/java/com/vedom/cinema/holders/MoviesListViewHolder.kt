@@ -1,6 +1,5 @@
-package com.vedom.cinema
+package com.vedom.cinema.holders
 
-import android.app.Activity
 import android.view.View
 import android.widget.ImageView
 import android.widget.RatingBar
@@ -8,7 +7,8 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.vedom.cinema.data.Movie
+import com.vedom.cinema.R
+import com.vedom.cinema.models.data.Movie
 
 class MoviesListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
