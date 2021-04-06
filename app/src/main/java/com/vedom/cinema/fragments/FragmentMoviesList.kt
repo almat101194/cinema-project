@@ -1,6 +1,7 @@
 package com.vedom.cinema.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -34,7 +35,6 @@ class FragmentMoviesList : Fragment() {
         }
     }
     private var adapter = MoviesListAdapter(clickListener)
-    private val scope = CoroutineScope(Dispatchers.Main)
     private var job: Job? = null
 
     override fun onCreateView(
@@ -68,28 +68,20 @@ class FragmentMoviesList : Fragment() {
 
     override fun onStart() {
         super.onStart()
-//        updateData()
     }
 
     override fun onDetach() {
+        progressBar = null
+        moviesListRv?.adapter = null
         moviesListRv = null
         progressBar = null
         super.onDetach()
+
     }
 
     private fun updateData(data: List<Movie>) {
         adapter.bindMovies(newMovies = data)
         adapter.notifyDataSetChanged()
-//        job = scope.launch {
-//
-//            (moviesListRv?.adapter as? MoviesListAdapter)?.apply {
-//                bindMovies(loadMovies(requireContext()))
-//            }
-//
-//        }
-//        (moviesListRv?.adapter as? MoviesListAdapter)?.apply {
-//            bindMovies(MovieDataSource().getMovies())
-//        }
     }
 
     private fun setUpUI(view: View) {
@@ -102,29 +94,15 @@ class FragmentMoviesList : Fragment() {
 
     override fun onDestroyView() {
         job?.cancel()
+        progressBar = null
+        moviesListRv?.adapter = null
+        moviesListRv = null
+        Log.e("Here", "Show destroy")
         super.onDestroyView()
+
     }
 
     companion object{
-        const val MOVIE1 = "MOVIE1"
-        const val MOVIE2 = "MOVIE2"
-        const val MOVIE3 = "MOVIE3"
-        const val MOVIE4 = "MOVIE4"
-        const val MOVIE5 = "MOVIE5"
-        const val MOVIE6 = "MOVIE6"
-        const val MOVIE7 = "MOVIE7"
-        const val MOVIE8 = "MOVIE8"
-        const val MOVIE9 = "MOVIE9"
-        const val MOVIE10 = "MOVIE10"
-        const val MOVIE11 = "MOVIE11"
-        const val MOVIE12 = "MOVIE12"
-        const val MOVIE13 = "MOVIE13"
-        const val MOVIE14 = "MOVIE14"
-        const val MOVIE15 = "MOVIE15"
-        const val MOVIE16 = "MOVIE16"
-
-//        const val FRAGMENT_MOVIES_DETAILS = "Fragment Movies Details"
-
         fun newInstance(): FragmentMoviesList {
             val fragment = FragmentMoviesList()
             return fragment

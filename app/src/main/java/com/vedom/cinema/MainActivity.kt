@@ -30,6 +30,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        supportFragmentManager.popBackStack()
+    }
+
     companion object {
         const val FRAGMENT_MOVIE_LIST_TAG = "Fragment Movie Lists"
     }

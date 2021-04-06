@@ -21,9 +21,10 @@ class MoviesListViewModel(private val interactor: MovieInteractor)
         fun loadMovies() {
             viewModelScope.launch {
                 _state.value = true
-                delay(2000)
-                _movieList.value = interactor.getDataMovies()
+//                delay(2000)
                 _state.value = false
+                _movieList.value = interactor.getDataMovies()
+
             }
         }
 }
